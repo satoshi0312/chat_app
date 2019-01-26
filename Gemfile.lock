@@ -150,6 +150,7 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
+    rb-readline (0.5.5)
     rdoc (4.3.0)
     react-rails (2.4.7)
       babel-transpiler (>= 0.7.0)
@@ -221,6 +222,7 @@ DEPENDENCIES
   jquery-rails
   pry-rails
   rails (= 4.2.8)
+  rb-readline
   react-rails
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)

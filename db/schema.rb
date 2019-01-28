@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190124132022) do
+ActiveRecord::Schema.define(version: 20190126063550) do
 
   create_table "messages", force: :cascade do |t|
     t.text     "text"

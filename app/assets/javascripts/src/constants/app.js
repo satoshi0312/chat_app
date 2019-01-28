@@ -3,9 +3,10 @@ import keyMirror from 'keymirror'
 export const ActionTypes = keyMirror({
   UPDATE_OPEN_CHAT_ID: null,
   SEND_MESSAGE: null,
+  GET_MESSAGES: null,
 })
 
-//CSRFを防ぐためのセキュリティ
+// CSRFを防ぐためのセキュリティ
 export function CSRFToken() {
   return document.querySelector('meta[name="csrf-token"]').getAttribute('content')
 }
@@ -14,5 +15,5 @@ export function CSRFToken() {
 const Root = window.location.origin || `${window.location.protocol}//${window.location.hostname}`
 const APIRoot = `${Root}/api`
 export const APIEndpoints = {
-  MESSEGES: APIRoot + '/messages'
+  MESSAGES: APIRoot + '/messages',
 }

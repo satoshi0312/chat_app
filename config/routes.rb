@@ -5,5 +5,6 @@ Rails.application.routes.draw do
   end
 
   resources :messages
+  resources :users
   root 'messages#index'
 end

@@ -6,7 +6,7 @@ class Header extends React.Component {
         <header className='header'>
           <div className='header-left'>
             <div className='header-logo'>
-              <a href='/'>ChatApp</a>
+              <a href='/' className='header-logo-link'>ChatApp</a>
             </div>
           </div>
           <div className='header-right'>

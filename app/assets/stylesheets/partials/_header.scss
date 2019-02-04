@@ -15,9 +15,6 @@
     .header-logo {
       font-weight: bold;
       font-size: 20px;
-      .heder-logo-link {
-        color: #000;
-      }
     }
   }
   .header-right {
@@ -52,4 +49,7 @@
       }
     }
   }
+}
+.header-logo-link {
+  color: #000;
 }

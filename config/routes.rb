@@ -5,6 +5,10 @@ Rails.application.routes.draw do
   end
 
   resources :messages
-  resources :users
+  resources :users do
+    collection do
+      get 'search'
+    end
+  end
   root 'messages#index'
 end

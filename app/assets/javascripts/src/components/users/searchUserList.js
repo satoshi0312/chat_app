@@ -17,7 +17,7 @@ class SearchUserList extends React.Component {
       <ul className='search_user_list'>
         <li className='search_user_list_item'>
           <div className='search_user_list_result'>
-            <img className='search_user_list_result_image' src=''/>
+            <img className='search_user_list_result_image' src='/Users/satoshi/progate/flux_tutorial/app/assets/images/default_image.jpg'/>
             <span>user1</span>
           </div>
         </li>

@@ -4,6 +4,7 @@ export const ActionTypes = keyMirror({
   UPDATE_OPEN_CHAT_ID: null,
   SEND_MESSAGE: null,
   GET_MESSAGES: null,
+  SEARCH_USERS: null,
 })
 
 // CSRFを防ぐためのセキュリティ
@@ -16,4 +17,5 @@ const Root = window.location.origin || `${window.location.protocol}//${window.lo
 const APIRoot = `${Root}/api`
 export const APIEndpoints = {
   MESSAGES: APIRoot + '/messages',
+  USERS_SEARCH: APIRoot + '/users/search',
 }

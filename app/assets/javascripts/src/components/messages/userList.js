@@ -3,7 +3,7 @@ import _ from 'lodash'
 import classNames from 'classnames'
 import Utils from '../../utils'
 import MessagesStore from '../../stores/messages'
-import UserStore from '../../stores/user'
+import UserStore from '../../stores/users'
 import MessagesAction from '../../actions/messages'
 
 class UserList extends React.Component {

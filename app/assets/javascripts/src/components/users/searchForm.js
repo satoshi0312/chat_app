@@ -1,4 +1,5 @@
 import React from 'react'
+import UsersAction from '../../actions/users'
 
 class SearchForm extends React.Component {
   constructor(props) {
@@ -13,7 +14,7 @@ class SearchForm extends React.Component {
   }
 
   updateValue(e) {
-    // MessagesAction.sendMessage(1, this.state.value)
+    UsersAction.searchUsers(this.state.value)
     this.setState({
       value: e.target.value,
     })

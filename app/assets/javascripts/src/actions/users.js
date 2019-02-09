@@ -7,13 +7,12 @@ export default {
     return new Promise((resolve, reject) => {
       request
       .get(APIEndpoints.USERS_SEARCH)
-      .send({
+      .query({
         keyword: keyword,
       })
       .end((error, res) => {
         if (!error && res.status === 200) {
-          const json = JSON.parse(res.users)
-          console.log(json)
+          const json = JSON.parse(res.text)
           Dispatcher.handleServerAction({
             type: ActionTypes.SEARCH_USERS,
             json,

@@ -24,8 +24,6 @@ UsersStore.dispatchToken = Dispatcher.register(payload => {
 
   switch (action.type) {
     case ActionTypes.SEARCH_USERS:
-      console.log('UserStore : SEARCH_USERS')
-      console.log(action)
       UserStore.setUsers(action.json)
       UserStore.emitChange()
       break

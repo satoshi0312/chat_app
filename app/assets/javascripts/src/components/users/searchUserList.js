@@ -10,8 +10,6 @@ class SearchUserList extends React.Component {
     return this.getStateFromStore()
   }
   getStateFromStore() {
-    console.log('SearchUserList : getStateFromStore')
-    console.log(UsersStore.getUsers())
     return {
       users: UsersStore.getUsers(),
     }

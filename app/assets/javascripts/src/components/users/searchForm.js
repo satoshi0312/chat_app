@@ -14,9 +14,10 @@ class SearchForm extends React.Component {
   }
 
   updateValue(e) {
-    UsersAction.searchUsers(this.state.value)
+    const keyword = e.target.value
+    UsersAction.searchUsers(keyword)
     this.setState({
-      value: e.target.value,
+      value: keyword,
     })
   }
 

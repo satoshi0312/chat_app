@@ -3,12 +3,22 @@ import BaseStore from '../base/store'
 import {ActionTypes} from '../constants/app'
 
 class UsersStore extends BaseStore {
-  getUsers() {
-    if (!this.get('searhUsers')) this.setUsers([])
+  getSearchUsers() {
+    if (!this.get('searhUsers')) this.setSearchUsers([])
     return this.get('searhUsers')
   }
-  setUsers(array) {
+  setSearchUsers(array) {
     this.set('searhUsers', array)
+  }
+  getCurrentUser() {
+    console.log('getCurrentUser')
+    if (!this.get('currentUser')) this.setSearchUsers([])
+    return this.get('currentUser')
+  }
+  setCurrentUser(obj) {
+    console.log('setCurrentUser')
+    console.log(obj)
+    this.set('currentUser', obj)
   }
   addChangeListener(callback) {
     this.on('change', callback)
@@ -24,7 +34,13 @@ UsersStore.dispatchToken = Dispatcher.register(payload => {
 
   switch (action.type) {
     case ActionTypes.SEARCH_USERS:
-      UserStore.setUsers(action.json)
+      UserStore.setSearchUsers(action.json)
+      UserStore.emitChange()
+      break
+
+    case ActionTypes.GET_CURRENT_USER:
+      console.log(action.json)
+      UserStore.setCurrentUser(action.json)
       UserStore.emitChange()
       break
 

@@ -11,7 +11,7 @@ class SearchUserList extends React.Component {
   }
   getStateFromStore() {
     return {
-      users: UsersStore.getUsers(),
+      users: UsersStore.getSearchUsers(),
     }
   }
   componentWillMount() {
@@ -23,16 +23,24 @@ class SearchUserList extends React.Component {
   onStoreChange() {
     this.setState(this.getStateFromStore())
   }
+  createFriendship(id) {
+    console.log(id)
+  }
 
   render() {
     const users = this.state.users.map((user, index) => {
+      console.log(user.avatar)
       return (
           // <li key={ message.created_at + '-' + message.user_id } className={ messageClasses }>
           //   <div className='message-box__item__contents'>
           //     { message.text }
           //   </div>
           // </li>
-        <li className='search_user_list_item'>
+        <li
+          onClick={ this.createFriendship.bind(user.id)}
+          className='search_user_list_item'
+          key={user.id}
+        >
           <div className='search_user_list_result'>
             <img className='search_user_list_result_image' src={user.avatar}/>
             <span>{user.name}</span>

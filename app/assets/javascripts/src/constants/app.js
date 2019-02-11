@@ -7,6 +7,7 @@ export const ActionTypes = keyMirror({
   SEARCH_USERS: null,
   CREATE_FRIENDSHIP: null,
   GET_CURRENT_USER: null,
+  GET_FRIENDS: null,
 })
 
 // CSRFを防ぐためのセキュリティ
@@ -21,4 +22,6 @@ export const APIEndpoints = {
   MESSAGES: APIRoot + '/messages',
   USERS_SEARCH: APIRoot + '/users/search',
   CURRENT_USER: APIRoot + '/users/current',
+  FRIENDSHIPS: Root + '/friendships',
+  FRIENDS: APIRoot + '/users/friends',
 }

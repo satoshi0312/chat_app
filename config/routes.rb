@@ -7,11 +7,13 @@ Rails.application.routes.draw do
       collection do
         get 'search'
         get 'current'
+        get 'friends'
       end
     end
   end
 
   resources :messages, only: [:index]
+  resources :friendships, only: [:create, :destroy]
   resources :users do
     collection do
       get 'search'

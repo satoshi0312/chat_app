@@ -10,7 +10,7 @@ export default {
       .end((error, res) => {
         if (!error && res.status === 200) {
           const json = JSON.parse(res.text)
-          console.log(json)
+          // console.log(json)
           Dispatcher.handleServerAction({
             type: ActionTypes.UPDATE_OPEN_CHAT_ID,
             json, // json: jsonと同じ。keyとvalueが一致する場合、このように省略出来ます。
@@ -30,7 +30,7 @@ export default {
       .end((error, res) => {
         if (!error && res.status === 200) {
           const json = JSON.parse(res.text)
-          console.log(json)
+          // console.log(json)
           Dispatcher.handleServerAction({
             type: ActionTypes.GET_MESSAGES,
             json,

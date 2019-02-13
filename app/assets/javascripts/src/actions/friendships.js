@@ -12,7 +12,7 @@ export default {
         to_user_id: toUserID,
       })
       .end((error, res) => {
-        if (!error && res.status === 200) {
+        if (!error && res.status === 302) {
           console.log(res)
         } else {
           reject(res)

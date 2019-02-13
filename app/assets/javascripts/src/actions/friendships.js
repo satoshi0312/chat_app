@@ -1,25 +1,8 @@
 import request from 'superagent'
 import Dispatcher from '../dispatcher'
-import {ActionTypes, APIEndpoints, CSRFToken} from '../constants/app'
+import {ActionTypes, APIEndpoints} from '../constants/app'
 
 export default {
-  createFriendship(toUserID) {
-    return new Promise((resolve, reject) => {
-      request
-      .post(APIEndpoints.FRIENDSHIPS)
-      .set('X-CSRF-Token', CSRFToken())
-      .send({
-        to_user_id: toUserID,
-      })
-      .end((error, res) => {
-        if (!error && res.status === 302) {
-          console.log(res)
-        } else {
-          reject(res)
-        }
-      })
-    })
-  },
   getCurrentUserFriends() {
     return new Promise((resolve, reject) => {
       request

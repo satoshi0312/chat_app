@@ -1,8 +1,9 @@
 class FriendshipsController < ApplicationController
   def create
     friendship = Friendship.create(friendship_params)
-    # binding.pry
-    render friendship
+    redirect_to root_path
+  rescue => e
+    redirect_to root_path
   end
 
   def destroy
@@ -10,12 +11,11 @@ class FriendshipsController < ApplicationController
     current_user_friendships = Friendship.where('from_user_id = ? or to_user_id = ?',current_user.id,current_user.id)
     delete_friendship = current_user_friendships.where('from_user_id = ? or to_user_id = ?',friend_user_id,friend_user_id).first
     delete_friendship.destroy
-    redirect_to '/'
+    redirect_to root_path
   end
 
   private
       def friendship_params
-      # binding.pry
-      params.require(:friendship).permit(:to_user_id).merge(from_user_id: current_user.id)
+      params.permit(:to_user_id).merge(from_user_id: current_user.id)
     end
 end

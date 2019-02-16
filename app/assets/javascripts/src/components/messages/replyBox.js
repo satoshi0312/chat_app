@@ -11,6 +11,7 @@ class ReplyBox extends React.Component {
   get initialState() {
     return {
       value: '',
+      friendshipID: 1, // FriendshipsStore.getFriendshipID(),
     }
   }
   handleKeyDown(e) {

@@ -3,10 +3,10 @@ import Dispatcher from '../dispatcher'
 import {ActionTypes, APIEndpoints, CSRFToken} from '../constants/app'
 
 export default {
-  changeOpenChat(newUserID) {
+  changeOpenChat(friendID) {
     return new Promise((resolve, reject) => {
       request
-      .get(APIEndpoints.MESSAGES) // 取得したいjsonがあるURLを指定する
+      .get(APIEndpoints.MESSAGES + '/' + friendID) // 取得したいjsonがあるURLを指定する
       .end((error, res) => {
         if (!error && res.status === 200) {
           const json = JSON.parse(res.text)

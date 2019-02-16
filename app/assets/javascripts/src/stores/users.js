@@ -17,7 +17,6 @@ class UsersStore extends BaseStore {
   }
   setCurrentUser(obj) {
     console.log('setCurrentUser')
-    console.log(obj)
     this.set('currentUser', obj)
   }
   addChangeListener(callback) {
@@ -39,7 +38,6 @@ UsersStore.dispatchToken = Dispatcher.register(payload => {
       break
 
     case ActionTypes.GET_CURRENT_USER:
-      console.log(action.json)
       UserStore.setCurrentUser(action.json)
       UserStore.emitChange()
       break

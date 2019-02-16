@@ -34,8 +34,8 @@ MessagesStore.dispatchToken = Dispatcher.register(payload => {
 
   switch (action.type) {
     case ActionTypes.GET_MESSAGES:
-      console.log('MessagesStore : GET_MESSAGES')
-      console.log(action)
+      // console.log('MessagesStore : GET_MESSAGES')
+      // console.log(action)
       MessagesStore.setMessages(action.json)
       MessagesStore.emitChange()
       break

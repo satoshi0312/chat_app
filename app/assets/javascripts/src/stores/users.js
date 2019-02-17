@@ -11,12 +11,10 @@ class UsersStore extends BaseStore {
     this.set('searhUsers', array)
   }
   getCurrentUser() {
-    console.log('getCurrentUser')
     if (!this.get('currentUser')) this.setSearchUsers([])
     return this.get('currentUser')
   }
   setCurrentUser(obj) {
-    console.log('setCurrentUser')
     this.set('currentUser', obj)
   }
   addChangeListener(callback) {

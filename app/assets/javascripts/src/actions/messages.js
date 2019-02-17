@@ -10,9 +10,8 @@ export default {
       .end((error, res) => {
         if (!error && res.status === 200) {
           const json = JSON.parse(res.text)
-          // console.log(json)
           Dispatcher.handleServerAction({
-            type: ActionTypes.UPDATE_OPEN_CHAT_ID,
+            type: ActionTypes.UPDATE_OPEN_CHAT,
             json, // json: jsonと同じ。keyとvalueが一致する場合、このように省略出来ます。
           })
           resolve(json)
@@ -22,41 +21,19 @@ export default {
       })
     })
   },
-
-  getMessages() {
-    return new Promise((resolve, reject) => {
-      request
-      .get(APIEndpoints.MESSAGES)
-      .end((error, res) => {
-        if (!error && res.status === 200) {
-          const json = JSON.parse(res.text)
-          // console.log(json)
-          Dispatcher.handleServerAction({
-            type: ActionTypes.GET_MESSAGES,
-            json,
-          })
-          resolve(json)
-        } else {
-          reject(res)
-        }
-      })
-    })
-  },
-
-  sendMessage(userID, message) {
+  sendMessage(friendshipID, message) {
     return new Promise((resolve, reject) => {
       request
       .post(APIEndpoints.MESSAGES) // 後ほど説明します。
       .set('X-CSRF-Token', CSRFToken()) // 後ほど説明します。
       // これによりサーバ側に送りたいデータを送ることが出来ます。
       .send({
-        user_id: userID,
+        friendship_id: friendshipID,
         text: message,
       })
       .end((error, res) => {
         if (!error && res.status === 200) {
           const json = JSON.parse(res.text)
-          console.log(json)
           Dispatcher.handleServerAction({
             type: ActionTypes.SEND_MESSAGE,
             json,

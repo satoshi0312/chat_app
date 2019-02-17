@@ -7,7 +7,6 @@ module Api
     end
 
     def create
-      # binding.pry
       message = Message.create(message_params)
       render json: message
     end
@@ -17,12 +16,12 @@ module Api
       current_user_friendships = Friendship.where('from_user_id = ? or to_user_id = ?',current_user.id,current_user.id)
       friendship = current_user_friendships.where('from_user_id = ? or to_user_id = ?',friend_user_id,friend_user_id).first
       friend_messages = friendship.messages
-      render json: friend_messages
+      render json: {friend_messages: friend_messages, friendship: friendship}
     end
 
     private
       def message_params
-        params.require(:message).permit(:text, :user_id)
+        params.require(:message).permit(:text, :friendship_id).merge(user_id: current_user.id)
       end
   end
 end

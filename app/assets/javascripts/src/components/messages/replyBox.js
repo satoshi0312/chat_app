@@ -1,5 +1,5 @@
 import React from 'react'
-// import MessagesStore from '../../stores/messages'
+import MessagesStore from '../../stores/messages'
 import MessagesAction from '../../actions/messages'
 
 class ReplyBox extends React.Component {
@@ -9,15 +9,36 @@ class ReplyBox extends React.Component {
   }
 
   get initialState() {
+    return this.getStateFromStore()
+    // const openChat = MessagesStore.getOpenChat()
+    // return {
+    //   value: '',
+    //   openChat, // FriendshipsStore.getFriendshipID(),
+    // }
+  }
+  getStateFromStore() {
+    console.log('ReplyBox : getStateFromStore')
+    const openChat = MessagesStore.getOpenChat()
+    const openChatID = openChat.id
     return {
       value: '',
-      friendshipID: 1, // FriendshipsStore.getFriendshipID(),
+      openChatID,
     }
   }
+  componentWillMount() {
+    MessagesStore.onChange(this.onStoreChange.bind(this))
+  }
+  componentWillUnmount() {
+    MessagesStore.offChange(this.onStoreChange.bind(this))
+  }
+  onStoreChange() {
+    this.setState(this.getStateFromStore())
+  }
   handleKeyDown(e) {
+    const friendshipID = this.state.openChatID
     if (e.keyCode === 13) {
       // MessagesAction.sendMessage(MessagesStore.getOpenChatUserID(), this.state.value)
-      MessagesAction.sendMessage(1, this.state.value)
+      MessagesAction.sendMessage(friendshipID, this.state.value)
       this.setState({
         value: '',
       })

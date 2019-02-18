@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
   devise_for :users
   namespace :api, { format: 'json' } do
-    resources :messages, only: [:index, :create]
+    resources :messages, only: [:index, :create, :show] do
+      collection do
+        post 'upload'
+      end
+    end
     resources :friendships
     resources :users do
       collection do

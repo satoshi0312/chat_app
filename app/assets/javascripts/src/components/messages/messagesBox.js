@@ -2,7 +2,7 @@ import React from 'react'
 import classNames from 'classNames'
 import MessagesStore from '../../stores/messages'
 import ReplyBox from '../../components/messages/replyBox'
-// import UserStore from '../../stores/user'
+import UserStore from '../../stores/users'
 import MessagesAction from '../../actions/messages'
 // import Utils from '../../utils'
 
@@ -13,7 +13,7 @@ class MessagesBox extends React.Component {
     this.state = this.initialState
     console.log('MessagesBox : constructor')
     console.log(this.state)
-    MessagesAction.getMessages()
+    MessagesAction.changeOpenChat()
     this.onChangeHandler = this.onStoreChange.bind(this)
   }
   get initialState() {
@@ -21,11 +21,15 @@ class MessagesBox extends React.Component {
   }
   getStateFromStore() {
     console.log('MessagesBox : getStateFromStore')
-    console.log(MessagesStore.getMessages())
+    const friendMessages = MessagesStore.getFriendMessages()
+    const openChat = MessagesStore.getOpenChat()
+    const currentUser = UserStore.getCurrentUser()
+    console.log(this.props)
     return {
-      messages: MessagesStore.getMessages(),
+      friendMessages,
+      openChat,
+      currentUser,
     }
-    // return MessagesStore.getChatByUserID(MessagesStore.getOpenChatUserID())
   }
   componentWillMount() {
     MessagesStore.onChange(this.onStoreChange.bind(this))
@@ -39,20 +43,25 @@ class MessagesBox extends React.Component {
 
   render() {
     // const messagesLength = this.state.messages.length
-    // const currentUserID = UserStore.user.id
-    const currentUserID = 1
+    const currentUser = this.state.currentUser
+    // if (!currentUser)
+    // const openChat = this.state.openChat
+    // console.log('MessagesBox: render')
+    // console.log(currentUser)
+    // console.log(openChat)
 
-    const messages = this.state.messages.map((message, index) => {
+    const messages = this.state.friendMessages.map((message, index) => {
+      console.log(message)
       const messageClasses = classNames({
         'message-box__item': true,
-        'message-box__item--from-current': message.user_id === currentUserID,
+        'message-box__item--from-current': message.user_id === currentUser.id,
         'clear': true,
       })
 
       return (
           <li key={ message.created_at + '-' + message.user_id } className={ messageClasses }>
             <div className='message-box__item__contents'>
-              { message.text }
+              {message.image ? <img className='image-message' src={`/message_images/${message.image}`} /> : message.text}
             </div>
           </li>
         )
@@ -76,7 +85,7 @@ class MessagesBox extends React.Component {
           <ul className='message-box__list'>
             { messages }
           </ul>
-          <ReplyBox />,
+          <ReplyBox openChat={this.state.openChat}/>,
         </div>
       )
   }

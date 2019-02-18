@@ -11,13 +11,10 @@ class UsersStore extends BaseStore {
     this.set('searhUsers', array)
   }
   getCurrentUser() {
-    console.log('getCurrentUser')
     if (!this.get('currentUser')) this.setSearchUsers([])
     return this.get('currentUser')
   }
   setCurrentUser(obj) {
-    console.log('setCurrentUser')
-    console.log(obj)
     this.set('currentUser', obj)
   }
   addChangeListener(callback) {
@@ -39,7 +36,6 @@ UsersStore.dispatchToken = Dispatcher.register(payload => {
       break
 
     case ActionTypes.GET_CURRENT_USER:
-      console.log(action.json)
       UserStore.setCurrentUser(action.json)
       UserStore.emitChange()
       break

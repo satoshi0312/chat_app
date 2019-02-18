@@ -3,7 +3,7 @@ import React from 'react'
 import classNames from 'classnames'
 // import Utils from '../../utils'
 // import UserStore from '../../stores/users'
-// import MessagesStore from '../../stores/messages'
+import MessagesStore from '../../stores/messages'
 import MessagesAction from '../../actions/messages'
 import FriendshipsStore from '../../stores/friendships'
 import FriendshipsAction from '../../actions/friendships'
@@ -23,11 +23,10 @@ class UserList extends React.Component {
 
   getStateFromStore() {
     const friends = FriendshipsStore.getFriends()
-    // console.log(friends)
-    // _.each(friends, (friend) => {
-    // })
+    const openChat = MessagesStore.getOpenChat()
     return {
-      friends: friends,
+      friends,
+      openChat,
     }
     // 友達だけを表示させるために一旦コメントアウト
     // const allMessages = MessagesStore.getAllChats()
@@ -48,9 +47,11 @@ class UserList extends React.Component {
   }
   componentWillMount() {
     FriendshipsStore.onChange(this.onStoreChange.bind(this))
+    MessagesStore.onChange(this.onStoreChange.bind(this))
   }
   componentWillUnmount() {
     FriendshipsStore.offChange(this.onStoreChange.bind(this))
+    MessagesStore.offChange(this.onStoreChange.bind(this))
   }
   onStoreChange() {
     this.setState(this.getStateFromStore())
@@ -65,12 +66,15 @@ class UserList extends React.Component {
   }
 
   render() {
+    const openChat = this.state.openChat
+    console.log(openChat)
     const friends = this.state.friends.map((friend, index) => {
-      console.log(friend)
       const itemClasses = classNames({
         'user-list__item': true,
+        'user-list__item--active': (friend.id === openChat.to_user_id) || (friend.id === openChat.from_user_id),
         'clear': true,
       })
+      const avatar = (friend.avatar === '') ? '/assets/default_image.jpg' : friend.avatar
       return (
         <li
           onClick = { this.changeOpenChat.bind(this, friend.id) }
@@ -99,7 +103,7 @@ class UserList extends React.Component {
             />
           </form>
           <div className='user-list__item__picture'>
-            <img src={ friend.avatar } />
+            <img src={ avatar } />
           </div>
           <div className='user-list__item__details'>
             <h4 className='user-list__item__name'>

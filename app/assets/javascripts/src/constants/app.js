@@ -1,9 +1,9 @@
 import keyMirror from 'keymirror'
 
 export const ActionTypes = keyMirror({
-  UPDATE_OPEN_CHAT_ID: null,
+  UPDATE_OPEN_CHAT: null,
   SEND_MESSAGE: null,
-  GET_MESSAGES: null,
+  SEND_IMAGE: null,
   SEARCH_USERS: null,
   GET_CURRENT_USER: null,
   GET_FRIENDS: null,

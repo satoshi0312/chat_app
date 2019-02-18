@@ -51,6 +51,7 @@ class MessagesBox extends React.Component {
     // console.log(openChat)
 
     const messages = this.state.friendMessages.map((message, index) => {
+      console.log(message)
       const messageClasses = classNames({
         'message-box__item': true,
         'message-box__item--from-current': message.user_id === currentUser.id,
@@ -60,7 +61,7 @@ class MessagesBox extends React.Component {
       return (
           <li key={ message.created_at + '-' + message.user_id } className={ messageClasses }>
             <div className='message-box__item__contents'>
-              { message.text }
+              {message.image ? <img className='image-message' src={`/message_images/${message.image}`} /> : message.text}
             </div>
           </li>
         )

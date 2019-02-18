@@ -2,12 +2,17 @@ module Api
   class MessagesController < ApplicationController
     def index
       messages = Message.all
-      # binding.pry
       render json: messages
     end
 
     def create
       message = Message.create(message_params)
+      render json: message
+    end
+
+    def upload
+      message = Message.create(image_params)
+      binding.pry
       render json: message
     end
 
@@ -22,6 +27,10 @@ module Api
     private
       def message_params
         params.require(:message).permit(:text, :friendship_id).merge(user_id: current_user.id)
+      end
+
+      def image_params
+        params.permit(:image, :friendship_id).merge(user_id: current_user.id)
       end
   end
 end

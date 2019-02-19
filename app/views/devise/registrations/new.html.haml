@@ -1,0 +1,17 @@
+.login_wrapper
+  .form_wrapper
+    = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+      %h2.login_title Chatを始めよう
+      .form_group
+        = f.text_field :name, autofocus: true, autocomplete: "name", placeholder: "ユーザー名", class: "form-control"
+      .form_group
+        = f.email_field :email, placeholder: "メールアドレス", class: "form-control"
+      .form_group
+        = f.password_field :password, autocomplete: "new-password", placeholder: "パスワード", class: "form-control"
+      .form_group
+        = f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "パスワード確認", class: "form-control"
+      .actions.form_group
+        = f.submit "新規登録", class: "btn btn-info login_btn"
+    = render "devise/shared/links"
+  .image_wrapper
+    = image_tag "registrations_view-6909b817290cc9ee9fd66b876dbc458a3cad8dff379e6596c4b2d9443dbb1b95.png", alt: "Registrations view"

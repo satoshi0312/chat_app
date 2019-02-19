@@ -1,0 +1,10 @@
+= render "partial/header"
+.user_profile
+  .user_profile_image
+    = image_tag @user.avatar, class: 'user_profile_image_id'
+    .user_profile_name
+      = @user.name
+    .user_profole_email
+      = @user.email
+  .user_profile_edit_btn
+    = link_to 'プロフィール編集', edit_user_registration_path, class: 'btn btn-info' if current_user.id == @user.id

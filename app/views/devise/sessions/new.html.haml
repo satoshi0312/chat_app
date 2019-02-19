@@ -1,0 +1,17 @@
+.login_wrapper
+  .form_wrapper
+    = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+      %h2.login_title Chatにログイン
+      .form_group
+        = f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "メールアドレス", class: "form-control"
+      .form_group
+        = f.password_field :password, autocomplete: "current-password", placeholder: "パスワード", class: "form-control"
+      - if devise_mapping.rememberable?
+        .form_group
+          = f.check_box :remember_me
+          = f.label :ログインしたままにする
+      .actions.form_group
+        = f.submit "ログイン", class: "btn btn-info login_btn"
+    = render "devise/shared/links"
+  .image_wrapper
+    = image_tag "registrations_view-6909b817290cc9ee9fd66b876dbc458a3cad8dff379e6596c4b2d9443dbb1b95.png", alt: "Registrations view"

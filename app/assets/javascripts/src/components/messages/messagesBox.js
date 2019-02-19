@@ -3,7 +3,6 @@ import classNames from 'classNames'
 import MessagesStore from '../../stores/messages'
 import ReplyBox from '../../components/messages/replyBox'
 import UserStore from '../../stores/users'
-import MessagesAction from '../../actions/messages'
 
 class MessagesBox extends React.Component {
 

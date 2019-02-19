@@ -10,11 +10,6 @@ class ReplyBox extends React.Component {
 
   get initialState() {
     return this.getStateFromStore()
-    // const openChat = MessagesStore.getOpenChat()
-    // return {
-    //   value: '',
-    //   openChat, // FriendshipsStore.getFriendshipID(),
-    // }
   }
   getStateFromStore() {
     console.log('ReplyBox : getStateFromStore')
@@ -37,7 +32,6 @@ class ReplyBox extends React.Component {
   handleKeyDown(e) {
     const friendshipID = this.state.openChatID
     if (e.keyCode === 13) {
-      // MessagesAction.sendMessage(MessagesStore.getOpenChatUserID(), this.state.value)
       MessagesAction.sendMessage(friendshipID, this.state.value)
       this.setState({
         value: '',

@@ -32,8 +32,6 @@ MessagesStore.dispatchToken = Dispatcher.register(payload => {
 
   switch (action.type) {
     case ActionTypes.GET_MESSAGES:
-      // console.log('MessagesStore : GET_MESSAGES')
-      // console.log(action)
       MessagesStore.setMessages(action.json)
       MessagesStore.emitChange()
       break
@@ -45,8 +43,6 @@ MessagesStore.dispatchToken = Dispatcher.register(payload => {
         const friendship = action.json.friendship
         MessagesStore.setFriendMessages(friendMessages)
         MessagesStore.setOpenChat(friendship)
-        // openChatID = action.userID
-        // messages[openChatID].lastAccess.currentUser = +new Date()
       }
       MessagesStore.emitChange()
 
@@ -64,7 +60,6 @@ MessagesStore.dispatchToken = Dispatcher.register(payload => {
           user_id: userID,
           created_at: message.created_at,
         })
-        // messages[userID].lastAccess.currentUser = +new Date()
       }
       MessagesStore.emitChange()
       break

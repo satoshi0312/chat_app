@@ -1,6 +1,5 @@
 import Dispatcher from '../dispatcher'
 import BaseStore from '../base/store'
-// import UserStore from '../stores/user'
 import {ActionTypes} from '../constants/app'
 
 class ChatStore extends BaseStore {

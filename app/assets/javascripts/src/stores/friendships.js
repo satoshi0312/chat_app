@@ -24,7 +24,6 @@ FriendshipsStore.dispatchToken = Dispatcher.register(payload => {
 
   switch (action.type) {
     case ActionTypes.GET_FRIENDS:
-      console.log(action.json)
       FriendshipStore.setFriends(action.json)
       FriendshipStore.emitChange()
       break

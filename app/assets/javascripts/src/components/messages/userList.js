@@ -48,7 +48,6 @@ class UserList extends React.Component {
 
   render() {
     const openChat = this.state.openChat
-    console.log(openChat)
     const friends = this.state.friends.map((friend, index) => {
       const itemClasses = classNames({
         'user-list__item': true,

@@ -26,22 +26,18 @@ class SearchUserList extends React.Component {
     this.setState(this.getStateFromStore())
   }
   createFriendship(toUserID) {
-    console.log(toUserID)
-
     var $form = $('<form></form>')
     $form.attr({
       'method': 'post',
       'action': '/friendships',
       'class': 'hidden',
     })
-
     var $csrfInput = $('<input></input>')
     $csrfInput.attr({
       'name': 'authenticity_token',
       'value': CSRFToken(),
       'class': 'hidden',
     })
-
     var $toUserIDInput = $('<input></input>')
     $toUserIDInput.attr({
       'name': 'to_user_id',
@@ -57,7 +53,6 @@ class SearchUserList extends React.Component {
 
   render() {
     const users = this.state.users.map((user, index) => {
-      console.log(user.avatar)
       const avatar = (user.avatar === '') ? '/assets/default_image.jpg' : user.avatar
       return (
         <li

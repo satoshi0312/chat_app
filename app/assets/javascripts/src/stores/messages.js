@@ -38,7 +38,6 @@ MessagesStore.dispatchToken = Dispatcher.register(payload => {
 
     case ActionTypes.UPDATE_OPEN_CHAT:
       {
-        console.log('MessagesStore : UPDATE_OPEN_CHAT_ID')
         const friendMessages = action.json.friend_messages
         const friendship = action.json.friendship
         MessagesStore.setFriendMessages(friendMessages)
@@ -50,11 +49,9 @@ MessagesStore.dispatchToken = Dispatcher.register(payload => {
 
     case ActionTypes.SEND_MESSAGE:
       {
-        console.log(action)
         const message = action.json
         const userID = message.user_id
         const messages = MessagesStore.getFriendMessages()
-        console.log(messages)
         messages.push({
           text: message.text,
           user_id: userID,
@@ -66,11 +63,9 @@ MessagesStore.dispatchToken = Dispatcher.register(payload => {
 
     case ActionTypes.SEND_IMAGE:
       {
-        console.log(action)
         const message = action.json
         const userID = message.user_id
         const messages = MessagesStore.getFriendMessages()
-        console.log(messages)
         messages.push({
           image: message.image,
           user_id: userID,

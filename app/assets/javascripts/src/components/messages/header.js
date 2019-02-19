@@ -28,8 +28,6 @@ class Header extends React.Component {
     this.setState(this.getStateFromStore())
   }
   toggleDropdown(e) {
-    console.log(e)
-    console.log(e.target)
     this.setState({
       toggle: !this.state.toggle, // state.toggleフラグを反転させる
     })

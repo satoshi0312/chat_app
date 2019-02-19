@@ -12,7 +12,6 @@ class ReplyBox extends React.Component {
     return this.getStateFromStore()
   }
   getStateFromStore() {
-    console.log('ReplyBox : getStateFromStore')
     const openChat = MessagesStore.getOpenChat()
     const openChatID = openChat.id
     return {
@@ -45,8 +44,6 @@ class ReplyBox extends React.Component {
   }
   uploadImage(e) {
     const friendshipID = this.state.openChatID
-    console.log(friendshipID)
-    console.log(e.target.files)
     if (e.target.files.length === 0) return
     var file = e.target.files[0]
     MessagesAction.sendImage(friendshipID, file)

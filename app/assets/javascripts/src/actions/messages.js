@@ -45,7 +45,6 @@ export default {
     })
   },
   sendImage(friendshipID, file) {
-    console.log(file)
     return new Promise((resolve, reject) => {
       request
       .post(APIEndpoints.MESSAGES + '/upload')
@@ -54,9 +53,7 @@ export default {
       .field('friendship_id', friendshipID)
       .end((error, res) => {
         if (!error && res.status === 200) {
-          console.log(res)
           const json = JSON.parse(res.text)
-          console.log(json)
           Dispatcher.handleServerAction({
             type: ActionTypes.SEND_IMAGE,
             json,

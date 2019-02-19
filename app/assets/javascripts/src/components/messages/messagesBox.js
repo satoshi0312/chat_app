@@ -10,20 +10,15 @@ class MessagesBox extends React.Component {
   constructor(props) {
     super(props)
     this.state = this.initialState
-    console.log('MessagesBox : constructor')
-    console.log(this.state)
-    MessagesAction.changeOpenChat()
     this.onChangeHandler = this.onStoreChange.bind(this)
   }
   get initialState() {
     return this.getStateFromStore()
   }
   getStateFromStore() {
-    console.log('MessagesBox : getStateFromStore')
     const friendMessages = MessagesStore.getFriendMessages()
     const openChat = MessagesStore.getOpenChat()
     const currentUser = UserStore.getCurrentUser()
-    console.log(this.props)
     return {
       friendMessages,
       openChat,
@@ -43,7 +38,6 @@ class MessagesBox extends React.Component {
   render() {
     const currentUser = this.state.currentUser
     const messages = this.state.friendMessages.map((message, index) => {
-      console.log(message)
       const messageClasses = classNames({
         'message-box__item': true,
         'message-box__item--from-current': message.user_id === currentUser.id,

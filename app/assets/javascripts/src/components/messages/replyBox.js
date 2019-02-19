@@ -57,7 +57,7 @@ class ReplyBox extends React.Component {
           onKeyDown = { this.handleKeyDown.bind(this) }
           onChange = { this.updateValue.bind(this) }
           className = 'reply-box__input'
-          placeholder = 'Type message to reply..'
+          placeholder = {this.state.openChatID ? 'Type message to reply..' : 'Select friend to bigin a chat withs..'}
           disabled = {this.state.openChatID ? '' : 'disabled'}
         />
         <span className = 'reply-box__tip'>

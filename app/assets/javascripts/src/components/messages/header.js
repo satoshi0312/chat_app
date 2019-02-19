@@ -15,6 +15,7 @@ class Header extends React.Component {
   getStateFromStore() {
     return {
       currentUser: UsersStore.getCurrentUser(),
+      toggle: false,
     }
   }
   componentWillMount() {
@@ -25,6 +26,13 @@ class Header extends React.Component {
   }
   onStoreChange() {
     this.setState(this.getStateFromStore())
+  }
+  toggleDropdown(e) {
+    console.log(e)
+    console.log(e.target)
+    this.setState({
+      toggle: !this.state.toggle, // state.toggleフラグを反転させる
+    })
   }
   render() {
     const currentUser = this.state.currentUser
@@ -43,11 +51,11 @@ class Header extends React.Component {
                 <a href='/users/search' className='header-logo-link'>ユーザーを探す</a>
               </li>
               <li className='dropdown'>
-                <div>
+                <div onClick={this.toggleDropdown.bind(this)}>
                   {currentUserName}
                   <span></span>
                 </div>
-                <ul className='dropdown-menu user-menu-box'>
+                <ul id='dropdown-menu' className={this.state.toggle ? 'dropdown-menu user-menu-box' : 'dropdown-menu user-menu-box hidden'}>
                   <li className='user-menu-list'>
                     {currentUserPage}
                   </li>

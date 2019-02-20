@@ -54,7 +54,7 @@ class UserList extends React.Component {
         'user-list__item--active': (friend.id === openChat.to_user_id) || (friend.id === openChat.from_user_id),
         'clear': true,
       })
-      const avatar = (friend.avatar === '') ? '/assets/default_image.jpg' : friend.avatar
+      const avatar = (friend.avatar.url === null) ? '/assets/default_image.jpg' : friend.avatar.url
       return (
         <li
           onClick = { this.changeOpenChat.bind(this, friend.id) }

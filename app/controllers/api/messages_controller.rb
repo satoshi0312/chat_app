@@ -12,7 +12,6 @@ module Api
 
     def upload
       message = Message.create(image_params)
-      binding.pry
       render json: message
     end
 

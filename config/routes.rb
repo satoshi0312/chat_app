@@ -18,6 +18,10 @@ Rails.application.routes.draw do
 
   resources :messages, only: [:index]
   resources :friendships, only: [:create, :destroy]
-  resources :users, only: [:show]
+  resources :users, only: [:show] do
+    collection do
+      get 'search'
+    end
+  end
   root 'messages#index'
 end

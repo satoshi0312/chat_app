@@ -53,7 +53,7 @@ class SearchUserList extends React.Component {
 
   render() {
     const users = this.state.users.map((user, index) => {
-      const avatar = (user.avatar === '') ? '/assets/default_image.jpg' : user.avatar
+      const avatar = (user.avatar.url === null) ? 'default_image.jpg' : user.avatar.url
       return (
         <li
           onClick={ this.createFriendship.bind(this, user.id)}

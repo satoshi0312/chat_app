@@ -6,13 +6,21 @@ module Api
     end
 
     def create
-      message = Message.create(message_params)
-      render json: message
+      message = Message.new(message_params)
+      if message.save
+        render json: message
+      else
+        render json: message.error
+      end
     end
 
     def upload
-      message = Message.create(image_params)
-      render json: message
+      message = Message.new(image_params)
+      if message.save
+        render json: message
+      else
+        render json: message.error
+      end
     end
 
     def show

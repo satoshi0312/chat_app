@@ -56,7 +56,7 @@ class MessagesBox extends React.Component {
           <ul className='message-box__list'>
             { messages }
           </ul>
-          <ReplyBox openChat={this.state.openChat}/>,
+          <ReplyBox />,
         </div>
       )
   }

@@ -24,3 +24,4 @@ npm-debug.log
 public/assets/javascripts/*
 !.gitkeep
 
+/public/uploads

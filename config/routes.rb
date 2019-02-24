@@ -6,8 +6,8 @@ Rails.application.routes.draw do
         post 'upload'
       end
     end
-    resources :friendships
-    resources :users do
+    resources :friendships, only: [:show]
+    resources :users, only: [] do
       collection do
         get 'search'
         get 'current'
@@ -18,10 +18,6 @@ Rails.application.routes.draw do
 
   resources :messages, only: [:index]
   resources :friendships, only: [:create, :destroy]
-  resources :users do
-    collection do
-      get 'search'
-    end
-  end
+  resources :users, only: [:show]
   root 'messages#index'
 end
